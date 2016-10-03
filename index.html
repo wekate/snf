@@ -22,7 +22,7 @@
     </table>
     </form>
     <hr>
-    <div id="res"> </div>
+    <div id="res_div"> </div>
   </center> 
   <script type="text/javascript">
     function get_query() {
@@ -45,11 +45,43 @@
       } 
       return query_string;
     }
-    function get_dl(url) {
-      //TODO
+    //$.get("https://crossorigin.me/http://www.sexyandfunny.com/watch_video/lunas-still-got-it_76028.html",function(res){console.log(res)})
+    function process_sf_page(page_html) {
+      console.log("got html page");
+      var url_regex = /(https?:\/\/.*?\.flv)/g;
+      var match = url_regex.exec(page_html);
+      if (m == null) {
+        //url not found
+        console.log("download link not found");
+        $("#res_url").text("Failed to find download url!!");
+      } else {
+        var url = m[0];
+        console.log("download link found - " + url);
+        $("#res_url").html("<a href='"+url+'>"+url+"</a>");
+      }
+    }
+    function handle_get_error() {
+      $("#res_url").text("Failed to load entered url!");
+    }
+    function main(url) {
+      $("#res_div").append(
+        "<table id='res_table'>\
+            <tr>\
+              <td>Url Entered:</td>\
+              <td><a href='"+ url + "'>" + url + "</a></td>\
+            <tr>\
+            <tr>\
+              <td>Link:</td>\
+              <td id='res_url'>Loading... Please wait.</td>\
+            <tr>\
+        </table>");
+      var get_url = "https://crossorigin.me/" + url;
+      $.get(get_url, process_sf_page).fail(handle_get_error);
     }
     var QueryString = get_query();
-    
+    if ('url' in QueryString) {
+      main(QueryString['url']);
+    }
   </script>
   </body>
 </html>
