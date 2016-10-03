@@ -45,7 +45,6 @@
       } 
       return query_string;
     }
-    //$.get("https://crossorigin.me/http://www.sexyandfunny.com/watch_video/lunas-still-got-it_76028.html",function(res){console.log(res)})
     function process_sf_page(page_html) {
       console.log("got html page");
       var url_regex = /(https?:\/\/.*?\.flv)/g;
@@ -57,7 +56,7 @@
       } else {
         var url = m[0];
         console.log("download link found - " + url);
-        $("#res_url").html("<a href='"+url+'>"+url+"</a>");
+        $("#res_url").html("<a href='"+url+"'>"+url+"</a>");
       }
     }
     function handle_get_error() {
