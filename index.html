@@ -54,7 +54,7 @@
         console.log("download link not found");
         $("#res_url").text("Failed to find download url!!");
       } else {
-        var url = m[0];
+        var url = match[0];
         console.log("download link found - " + url);
         $("#res_url").html("<a href='"+url+"'>"+url+"</a>");
       }
