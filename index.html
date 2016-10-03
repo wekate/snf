@@ -13,7 +13,7 @@
     <table>
       <tr>
         <td>Page Url:</td>
-        <td><input name="url" type="text" size=30></td>
+        <td><input name="url" type="text" size=60></td>
       </tr>
       <tr>
         <td></td>
@@ -49,7 +49,7 @@
       console.log("got html page");
       var url_regex = /(https?:\/\/.*?\.flv)/g;
       var match = url_regex.exec(page_html);
-      if (m == null) {
+      if (match == null) {
         //url not found
         console.log("download link not found");
         $("#res_url").text("Failed to find download url!!");
